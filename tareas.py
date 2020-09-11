@@ -126,4 +126,3 @@ def menu_tarea():
 
 #Comprobando xD
 menu_inicial()
-print_list()
