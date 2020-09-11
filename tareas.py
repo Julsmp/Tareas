@@ -1,27 +1,21 @@
-"""
+# --------------------------------
+#         APP DE TAREAS
+#     Made by Julia Martínez
+#        v. 1.0 09/2020
+# --------------------------------
 
-Qué falta?
+import re
 
-- Imprimir imprima solo el nombre de la tarea. 
-- Poder acceder a la tarea
-- Dentro de la tarea ver toda la información, descripción, fecha, etc.. 
-- Opciones dentro de la tarea: 
-    - completar tarea 
-    - modificar tarea (poder decidir qué parte modificas)
-- Añadir fecha a la tarea
-- añadir atributo de completado
-- Que la primera tarea del programa sea 'Aprender a utilizar el programa' y aprenda los comandos 
-para evitar que aparezcan siempre las instrucciones y lo podrá recuperar en completados,
-- Ver lista de completados
-
-"""
-
+# --------------------------------
 # Variables
+# --------------------------------
 
 Mylist=[]
-Lista_Completados=[]
+Lista_Completadas=[]
 
+# --------------------------------
 # Clases
+# --------------------------------
 
 class Tareas():
 
@@ -40,7 +34,9 @@ class Tareas():
     def mostrar(self):
         print("Titulo: ", self.titulo, "\nDescripcion: ", self.descripcion)
 
-# Funciones de listas
+# --------------------------------
+# Funciones de tareas
+# --------------------------------
 
 def añadir_tarea():
     titulo=input("Titulo de la tarea: ")
@@ -59,29 +55,48 @@ def añadir_tarea():
     respuesta_fecha = input("Quieres añadir fecha a la tarea? Responde 'si' o 'no'. ")
     if respuesta_fecha.capitalize == "Si":
         pass
+    elif respuesta_fecha.capitalize == "No":
+        añadir_tarea()
 
+def completar_tarea():
+    print_list()
+    num=input("\n Escribe el número de la tarea que quieres completar. Escribe 999 para cancelar. \n")
+
+    if num != "999":
+        if re.search ("[0-9]", num):
+            num=int(num)
+            Mylist.pop(num)
+
+            print("Tarea completada")
+        else:
+            print("Debías escribir el número. Volvamos a intentarlo. \n")
+            completar_tarea()
+    else:
+        print("Volviendo al menú inicial")
+        menu_inicial()
 
 def print_list():
-    for tarea in Mylist:
+    for tarea in enumerate(Mylist):
     	print(tarea)
 
+# --------------------------------
 #Funciones de funcionamiento
+# --------------------------------
 
 def menu_inicial():
     while True: #Bucle inicial
         print("\n")
         print_list()
         print("\n") #Esto cambiarlo por una tarea más adelante
-        print("Escribe '1' para añadir una tarea \n Escribe '2' para completar una tarea")
-        resp_menu = input("- ")
+        print("- Escribe '1' para añadir una tarea \n- Escribe '2' para completar una tarea")
+        resp_menu = input("")
 
         if resp_menu == "1":
             añadir_tarea()
         elif resp_menu == "2": #imprimir la lista numerada, pedirle que ponga el numero
-            pass
+            completar_tarea()
         else:
             print("Esa respuesta no es correcta")
-
 
 def menu_lista():
     pass
