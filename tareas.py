@@ -83,6 +83,10 @@ def print_list():
     for tarea in enumerate(Mylist):
     	print(tarea)
 
+def añadir_fecha():
+    pass
+
+
 def print_completadas():
     if Lista_Completadas: 
         print("¡Felicidades! Has completado las siguientes tareas: ")
