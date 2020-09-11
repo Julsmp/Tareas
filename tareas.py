@@ -23,7 +23,7 @@ class Tareas():
         self.titulo=titulo
         self.descripcion=""
         self.completa=False
-        self.fecha=False
+        self.fecha=None
 
     def __completar(self, completamos):
         self.completa=completamos
@@ -65,8 +65,12 @@ def completar_tarea():
     if num != "999":
         if re.search ("[0-9]", num):
             num=int(num)
-            Mylist.pop(num)
 
+            Tarea_eliminar = Tareas("titulo")
+            Tarea_eliminar = Mylist[num]
+            
+            Lista_Completadas.append(Tarea_eliminar)
+            Mylist.pop(num)
             print("Tarea completada")
         else:
             print("Debías escribir el número. Volvamos a intentarlo. \n")
@@ -79,6 +83,14 @@ def print_list():
     for tarea in enumerate(Mylist):
     	print(tarea)
 
+def print_completadas():
+    if Lista_Completadas: 
+        print("¡Felicidades! Has completado las siguientes tareas: ")
+        print(Lista_Completadas)
+    else: 
+        print("Todavía no has completado ninguna tarea. ¡Ánimo!")
+        menu_inicial()
+
 # --------------------------------
 #Funciones de funcionamiento
 # --------------------------------
@@ -86,15 +98,23 @@ def print_list():
 def menu_inicial():
     while True: #Bucle inicial
         print("\n")
-        print_list()
-        print("\n") #Esto cambiarlo por una tarea más adelante
-        print("- Escribe '1' para añadir una tarea \n- Escribe '2' para completar una tarea")
-        resp_menu = input("")
+        if Mylist: 
+            print("Estas son las tareas que te quedan por completar: ")
+            print_list()
+            print("\n") #Esto cambiarlo por una tarea más adelante
+            print("- Escribe '1' para añadir una tarea \n- Escribe '2' para completar una tarea \n- Escribe '3' para ver las tareas completadas")
+            resp_menu = input("")
+        else: 
+            print("\n") #Esto cambiarlo por una tarea más adelante
+            print("- Escribe '1' para añadir una tarea \n- Escribe '2' para completar una tarea \n- Escribe '3' para ver las tareas completadas")
+            resp_menu = input("")           
 
         if resp_menu == "1":
             añadir_tarea()
         elif resp_menu == "2": #imprimir la lista numerada, pedirle que ponga el numero
             completar_tarea()
+        elif resp_menu == "3":
+            print_completadas()
         else:
             print("Esa respuesta no es correcta")
 
