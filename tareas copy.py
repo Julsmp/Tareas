@@ -49,7 +49,7 @@ def añadir_tarea():
     mitarea=Tareas(titulo)
     mitarea.descripcion=descripcion
 
-    respuesta_fecha="1"
+    respuesta_fecha="1" #prueba añadiendo
 
     if respuesta_fecha=="1":
         fecha=input("¿Qué fecha?")
@@ -57,7 +57,7 @@ def añadir_tarea():
         Lista_tareas.append(mitarea)
     
 
-    print(Lista_tareas)
+    print(Lista_tareas) #imprimiendo el objeto añadido
 
 añadir_tarea()
 print(Lista_tareas)
